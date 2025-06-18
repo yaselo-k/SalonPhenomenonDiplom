@@ -105,15 +105,6 @@
     <Compile Include="Pages\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Forms\AddEditMaster.xaml.cs">
-      <DependentUpon>AddEditMaster.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Forms\AddEditRegistration.xaml.cs">
-      <DependentUpon>AddEditRegistration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Forms\AddEditService.xaml.cs">
-      <DependentUpon>AddEditService.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\MastersListPage.xaml.cs">
       <DependentUpon>MastersListPage.xaml</DependentUpon>
     </Compile>
@@ -149,18 +140,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AutorizationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Forms\AddEditMaster.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Forms\AddEditRegistration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Forms\AddEditService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

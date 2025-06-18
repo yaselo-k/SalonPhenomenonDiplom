@@ -37,6 +37,7 @@
                   BorderBrush="#DDDDDD"
                   GridLinesVisibility="None"
                   HeadersVisibility="Column"
+                  SelectionChanged="MasterDataGrid_SelectionChanged"  
                   Margin="0,0,0,80">
 
                         <DataGrid.CellStyle>
@@ -79,7 +80,7 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Height="40"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Bottom">
                         <Button Content="Добавить" x:Name="MasterAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="MasterAddBtn_Click"/>
                         <Button Content="Редактировать" x:Name="MasterEditBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="MasterEditBtn_Click"/>
@@ -89,5 +90,42 @@
                 </Grid>
             </ScrollViewer>
         </DockPanel>
+        <Border x:Name="EditMasterPanel"
+                    Grid.RowSpan="2"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="16"
+                    Margin="10"
+                    Visibility="Collapsed">
+            <StackPanel Margin="0,170,0,0" HorizontalAlignment="Center">
+                <TextBlock Text="Добавить мастера" HorizontalAlignment="Left" Style="{StaticResource LBAutorization}" Margin="0,0,0,50"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Фамилия:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="MasterSurnameTB" Width="800" Style="{StaticResource TBLogin}"/>
+                </StackPanel>
+                <!-- Имя -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Имя:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="MasterNameTB" Width="800" Style="{StaticResource TBLogin}"/>
+                </StackPanel>
+                <!-- Отчество -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Отчество:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="MasterPatTB" Width="800" Style="{StaticResource TBLogin}"/>
+                </StackPanel>
+                <!-- Специализация -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Специализация:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
+                    <ComboBox x:Name="MasterSpecCB" Width="800" FontSize="14" Height="40"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="BtnSave" Content="Сохранить" Width="100" Height="32" Style="{StaticResource AddChangeBT}"
+                        Margin="0,0,10,0" Click="BtnSave_Click"/>
+                    <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="Отменить" Width="100" Height="32" Style="{StaticResource SecondaryButtonStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

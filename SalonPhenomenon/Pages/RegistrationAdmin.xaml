@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SalonPhenomenon.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="850"
       Title="RegistrationAdmin">
 
     <Grid>
@@ -24,12 +24,16 @@
                 </StackPanel.Background>
                 <Button Content="Мастера" x:Name="MastersBtn" Width="120" Margin="10,5" Style="{StaticResource AccentButtonStyle}" Click="MastersBtn_Click"/>
                 <Button Content="Услуги" x:Name="ServicesBtn" Width="120" Margin="10,5" Style="{StaticResource AccentButtonStyle}" Click="ServicesBtn_Click"/>
-                <Button Content="Выйти" x:Name="ExitBtn" Width="120" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" Click="ExitBtn_Click"/>
+                <Button Content="Выйти" x:Name="ExitBtn" Width="120" Style="{StaticResource AccentButtonStyle}" Click="ExitBtn_Click"/>
             </StackPanel>
 
             <ScrollViewer Margin="20">
                 <Grid>
-                    <TextBlock Text="Записи" FontSize="20" FontWeight="Bold" Margin="0,10,0,10" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Поиск" HorizontalAlignment="Center" Margin="0,20,20,0" Style="{StaticResource LBName}"/>
+                            <TextBox x:Name="SearchBox" Width="350" Height="40" HorizontalAlignment="Right" Margin="0,7,0,0"
+                                     VerticalAlignment="Top" TextChanged="SearchBox_TextChanged"/>
+                    </StackPanel>
 
                     <DataGrid x:Name="RecordsDataGrid"
                           ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
@@ -41,7 +45,8 @@
                           BorderBrush="White"
                           GridLinesVisibility="None"
                           HeadersVisibility="Column"
-                          Margin="0,0,0,80">
+                          Margin="0,54,0,80"
+                          SelectionChanged="RecordsDataGrid_SelectionChanged">
 
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
@@ -89,15 +94,85 @@
                         </DataGrid.RowStyle>
                     </DataGrid>
 
-                    <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right"
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                             VerticalAlignment="Bottom" Height="40">
-                        <Button Content="Добавить" x:Name="RecordAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="Button_Click"/>
+                        <Button Content="Добавить" x:Name="RecordAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="RecordAddBtn_Click"/>
                         <Button Content="Редактировать" x:Name="RecordEditBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="RecordEditBtn_Click"/>
                         <Button Content="Удалить" x:Name="RecordDeleteBtn" Width="120" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="RecordDeleteBtn_Click"/>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
         </DockPanel>
+        <Border x:Name="EditPanel"
+                            Grid.RowSpan="2"
+                            Background="White"
+                            BorderBrush="#E5E7EB"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="16"
+                            Margin="10"
+                            Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Новая запись" HorizontalAlignment="Left" Style="{StaticResource LBAutorization}" Margin="0,20,0,0"/>
+                <!-- Дата -->
+                <StackPanel Orientation="Horizontal" Margin="0,70,0,10">
+                    <TextBlock Text="Дата:" Style="{StaticResource LogPass}" Margin="0,0,103,0"/>
+                    <DatePicker x:Name="DpEditDate" Width="750" Height="40"/>
+                </StackPanel>
+                <!-- Время -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Время:" Style="{StaticResource LogPass}" Margin="0,0,92,0"/>
+                    <TextBox x:Name="TbEditTime" Width="750" Style="{StaticResource TBLogin}" 
+                             PreviewTextInput="TbEditTime_PreviewTextInput" ToolTip="Формат HH:MM"/>
+                </StackPanel>
+                <!-- Фамилия -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Фамилия клиента:" Style="{StaticResource LogPass}" Margin="0,0,22,0"/>
+                    <TextBox x:Name="TbEditSurname" Width="750" Style="{StaticResource TBLogin}"/>
+                </StackPanel>
+                <!-- Имя -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Имя клиента:" Style="{StaticResource LogPass}" Margin="0,0,52,0"/>
+                    <TextBox x:Name="TbEditName" Style="{StaticResource TBLogin}" Width="750"/>
+                </StackPanel>
+                <!-- Отчество -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Отчество клиента:" Style="{StaticResource LogPass}" Margin="0,0,19,0"/>
+                    <TextBox x:Name="TbEditPatronymic" Style="{StaticResource TBLogin}" Width="750"/>
+                </StackPanel>
+                <!-- Телефон -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Телефон клиента:" Style="{StaticResource LogPass}" Margin="0,0,22,0"/>
+                    <TextBox x:Name="TbEditPhone" Style="{StaticResource TBLogin}" Width="750"/>
+                </StackPanel>
+                <!-- Статус -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Статус:" Style="{StaticResource LogPass}" Margin="0,0,90,0"/>
+                    <ComboBox x:Name="CbEditStatus" Height="40" Width="750" FontSize="14"/>
+                </StackPanel>
+                <!-- Услуга -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Услуга:" Style="{StaticResource LogPass}" Margin="0,0,90,0"/>
+                    <ComboBox x:Name="CbEditService" Width="750" Height="40" FontSize="14" SelectionChanged="CbEditService_SelectionChanged"/>
+                </StackPanel>
+                <!-- Сумма -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Сумма (₽):" Style="{StaticResource LogPass}" Margin="0,0,68,0"/>
+                    <TextBox x:Name="TbEditSum" Height="40" Width="750" Style="{StaticResource TBLogin}"/>
+                </StackPanel>
+                <!-- Мастер -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <TextBlock Text="Мастер:" Style="{StaticResource LogPass}" Margin="0,0,82,0"/>
+                    <ComboBox x:Name="CbEditMaster" Width="750" FontSize="14" Height="40"/>
+                </StackPanel>
+                <!-- Кнопки Сохранить/Отменить -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="BtnSave" Content="Сохранить" Width="100" Height="32" Style="{StaticResource AddChangeBT}"
+                                        Margin="0,0,10,0" Click="BtnSave_Click"/>
+                    <Button x:Name="BtnCancel" Content="Отменить" Width="100" Height="32" Style="{StaticResource SecondaryButtonStyle}"
+                                        Click="BtnCancel_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

@@ -38,6 +38,7 @@
                       BorderBrush="#DDDDDD"
                       GridLinesVisibility="None"
                       HeadersVisibility="Column"
+                              SelectionChanged="ServicesDataGrid_SelectionChanged"
                       Margin="0,0,0,80">
 
                         <DataGrid.CellStyle>
@@ -70,7 +71,7 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Height="40"
-                        HorizontalAlignment="Right"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Bottom">
                         <Button Content="Добавить" x:Name="ServiceAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="ServiceAddBtn_Click"/>
                         <Button Content="Редактировать" x:Name="ServiceEditBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="ServiceEditBtn_Click"/>
@@ -80,5 +81,39 @@
                 </Grid>
             </ScrollViewer>
         </DockPanel>
+        <Border x:Name="EditServicePanel"
+            Grid.RowSpan="2"
+            Background="White"
+            BorderBrush="#E5E7EB"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="16"
+            Margin="10"
+            Visibility="Collapsed">
+            <StackPanel Margin="0,170,0,0" HorizontalAlignment="Center">
+                <TextBlock Text="Новая услуга" HorizontalAlignment="Left" Style="{StaticResource LBAutorization}" Margin="0,0,0,50"/>
+                <!-- Услуга -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Название услуги:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="ServiceTB" Width="750" Style="{StaticResource TBLogin}" Margin="47,0,0,0"/>
+                </StackPanel>
+                <!-- Продолжительность -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Продолжительность (мин.):" Style="{StaticResource LogPass}" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="DurInMinTB" Width="750" Style="{StaticResource TBLogin}"/>
+                </StackPanel>
+                <!-- Стоимость -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="Цена:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="CostTB" Width="750" Style="{StaticResource TBLogin}" Margin="47,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="BtnSave" Click="BtnSave_Click" Content="Сохранить" Width="100" Height="32" Style="{StaticResource AddChangeBT}"
+                Margin="0,0,10,0"/>
+                    <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="Отменить" Width="100" Height="32" Style="{StaticResource SecondaryButtonStyle}"
+                            />
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>
