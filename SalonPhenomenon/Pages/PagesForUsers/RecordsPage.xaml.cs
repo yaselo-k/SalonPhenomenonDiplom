@@ -129,7 +129,6 @@ namespace SalonPhenomenon.Pages.PagesForUsers
             return input.Any(c => specialChars.Contains(c));
         }
 
-        // Метод для проверки номера телефона (11 цифр)
         private bool IsValidPhoneNumber(string number)
         {
             return !string.IsNullOrEmpty(number) &&
@@ -140,14 +139,12 @@ namespace SalonPhenomenon.Pages.PagesForUsers
         {
             var sb = new StringBuilder();
 
-            // Вспомогательные функции
             bool ContainsDigit(string input) =>
                 !string.IsNullOrEmpty(input) && input.Any(char.IsDigit);
 
             bool HasValidLength(string input) =>
                 input?.Trim().Length >= 2;
 
-            // Основные проверки
             if (DpEditDate.SelectedDate == null)
                 sb.AppendLine("• Выберите дату.");
             if (!TimeSpan.TryParse(TbEditTime.Text, out var ts))
@@ -157,7 +154,6 @@ namespace SalonPhenomenon.Pages.PagesForUsers
             else if (sum < 0)
                 sb.AppendLine("• Сумма не может быть отрицательной.");
 
-            // Проверка Фамилии
             if (string.IsNullOrWhiteSpace(TbEditSurname.Text))
                 sb.AppendLine("• Введите фамилию клиента.");
             else
@@ -170,7 +166,6 @@ namespace SalonPhenomenon.Pages.PagesForUsers
                     sb.AppendLine("• Фамилия содержит недопустимые символы.");
             }
 
-            // Проверка Имени
             if (string.IsNullOrWhiteSpace(TbEditName.Text))
                 sb.AppendLine("• Введите имя клиента.");
             else
@@ -183,7 +178,6 @@ namespace SalonPhenomenon.Pages.PagesForUsers
                     sb.AppendLine("• Имя содержит недопустимые символы.");
             }
 
-            // Проверка Отчества
             if (string.IsNullOrWhiteSpace(TbEditPatronymic.Text))
                 sb.AppendLine("• Введите отчество клиента.");
             else
@@ -196,13 +190,9 @@ namespace SalonPhenomenon.Pages.PagesForUsers
                     sb.AppendLine("• Отчество содержит недопустимые символы.");
             }
 
-            // Проверка телефона
             if (string.IsNullOrWhiteSpace(TbEditPhone.Text))
                 sb.AppendLine("• Введите телефон клиента.");
-            else if (!IsValidPhoneNumber(TbEditPhone.Text.Replace("+", "")))
-                sb.AppendLine("• Телефон должен содержать ровно 11 цифр.");
 
-            // Другие обязательные поля
             if (CbEditStatus.SelectedValue == null)
                 sb.AppendLine("• Выберите статус.");
             if (CbEditService.SelectedValue == null)
@@ -217,7 +207,6 @@ namespace SalonPhenomenon.Pages.PagesForUsers
                 return;
             }
 
-            // Получаем связанные сущности
             var statusId = (int)CbEditStatus.SelectedValue;
             var serviceId = (int)CbEditService.SelectedValue;
             var masterId = (int)CbEditMaster.SelectedValue;
@@ -289,7 +278,6 @@ namespace SalonPhenomenon.Pages.PagesForUsers
             var textBox = sender as TextBox;
             var input = e.Text;
 
-            // только цифры и двоеточие
             if (!char.IsDigit(input, 0) && input != ":")
             {
                 e.Handled = true;
@@ -302,44 +290,39 @@ namespace SalonPhenomenon.Pages.PagesForUsers
             string currenttext = textBox.Text;
             string Input = e.Text;
 
-            // Разрешаем только цифры, двоеточие и пробел
             if (!char.IsDigit(input, 0) && input != ":" && input != " ")
             {
                 e.Handled = true;
                 return;
             }
 
-            // Если введён пробел — заменяем его на двоеточие
             if (input == " ")
             {
                 if (currentText.Length <= 2 && !currentText.Contains(":"))
                 {
                     textBox.Text += ":";
                     textBox.CaretIndex = textBox.Text.Length;
-                    e.Handled = true; // блокируем ввод пробела
+                    e.Handled = true; 
                 }
                 else
                 {
-                    e.Handled = true; // игнорируем лишние пробелы
+                    e.Handled = true; 
                 }
                 return;
             }
 
-            // Автоматическое добавление : после 2х символов, если ещё нет :
             if (input != ":" && currentText.Length == 3 && !currentText.Contains(":"))
             {
                 textBox.Text += ":";
                 textBox.CaretIndex = textBox.Text.Length;
             }
 
-            // Ограничиваем максимальную длину до 5 символов (HH:MM)
             if ((textBox.Text + input).Length > 5)
             {
                 e.Handled = true;
                 return;
             }
 
-            // Запрещаем ввод более одного двоеточия
             if (input == ":" && currentText.Contains(":"))
             {
                 e.Handled = true;
@@ -351,12 +334,14 @@ namespace SalonPhenomenon.Pages.PagesForUsers
         {
             string searchText = SearchBox.Text.Trim().ToLower();
 
-            var query = _context.Registrations.ToList();
+            var masterIDs = _context.Masters
+                                    .Where(m => m.MasterSurname.ToLower().Contains(searchText))
+                                    .Select(m => m.MasterID)
+                                    .ToList();
 
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                query = query.Where(r => r.RegSurnameClient.ToLower().Contains(searchText)).ToList();
-            }
+            var query = _context.Registrations
+                                .Where(r => masterIDs.Contains(r.IDMaster))
+                                .ToList();
 
             RecordsDataGrid.ItemsSource = query;
         }
@@ -375,6 +360,64 @@ namespace SalonPhenomenon.Pages.PagesForUsers
                     _context.SaveChanges();
                     LoadRegistrations();
                 }
+            }
+        }
+
+        private bool _isUpdatingText = false;
+
+        private void TbEditPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_isUpdatingText) return;
+
+            var tb = sender as TextBox;
+            string rawText = tb.Text;
+
+            string digits = new string(rawText.Where(char.IsDigit).ToArray());
+
+            if (digits.Length > 11)
+                digits = digits.Substring(0, 11);
+
+            StringBuilder formatted = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(digits))
+            {
+                formatted.Append("+7");
+
+                if (digits.Length > 1)
+                {
+                    formatted.Append("(");
+                    formatted.Append(digits.Substring(1, Math.Min(3, digits.Length - 1)));
+                    formatted.Append(")");
+                }
+
+                if (digits.Length > 4)
+                {
+                    formatted.Append(" ");
+                    formatted.Append(digits.Substring(4, Math.Min(3, digits.Length - 4)));
+                }
+
+                if (digits.Length > 7)
+                {
+                    formatted.Append("-");
+                    formatted.Append(digits.Substring(7, Math.Min(2, digits.Length - 7)));
+                }
+
+                if (digits.Length > 9)
+                {
+                    formatted.Append("-");
+                    formatted.Append(digits.Substring(9, digits.Length - 9));
+                }
+            }
+
+            try
+            {
+                _isUpdatingText = true;
+                tb.Text = formatted.ToString();
+                tb.CaretIndex = tb.Text.Length;
+            }
+            finally
+            {
+                _isUpdatingText = false;
             }
         }
     }

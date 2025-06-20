@@ -28,18 +28,19 @@
                 <Grid>
                     <TextBlock Text="Записи" FontSize="20" FontWeight="Bold" Margin="0,10,0,10" HorizontalAlignment="Left"/>
 
-                    <DataGrid x:Name="ServicesDataGrid"
-                      ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
-                      ItemsSource="{Binding}"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      RowBackground="White"
-                      AlternatingRowBackground="#E7EAEF"
-                      BorderBrush="#DDDDDD"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                              SelectionChanged="ServicesDataGrid_SelectionChanged"
-                      Margin="0,0,0,80">
+                    <DataGrid x:Name="ServicesDataGrid" FontSize="20"
+                           Style="{StaticResource AccentDataGridStyle}"
+                   ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
+                   ItemsSource="{Binding}"
+                   AutoGenerateColumns="False"
+                   CanUserAddRows="False"
+                   RowBackground="White"
+                   AlternatingRowBackground="#E7EAEF"
+                   BorderBrush="#DDDDDD"
+                   GridLinesVisibility="None"
+                   HeadersVisibility="Column"
+                           SelectionChanged="ServicesDataGrid_SelectionChanged"
+                   Margin="0,0,0,80">
 
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
@@ -71,25 +72,25 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Height="40"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom">
-                        <Button Content="Добавить" x:Name="ServiceAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="ServiceAddBtn_Click"/>
-                        <Button Content="Редактировать" x:Name="ServiceEditBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="ServiceEditBtn_Click"/>
-                        <Button Content="Удалить" x:Name="DeleteServiceBtn" Width="120" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="DeleteServiceBtn_Click"/>
-                        <Button Content="Назад" x:Name="GoBackBtn" VerticalAlignment="Top" Width="120" Style="{StaticResource SecondaryButtonStyle}" Height="40" Click="GoBackBtn_Click"/>
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom">
+                        <Button Content="Добавить" FontSize="25" x:Name="ServiceAddBtn" Width="150" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="ServiceAddBtn_Click"/>
+                        <Button Content="Редактировать" FontSize="25" x:Name="ServiceEditBtn" Width="180" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="ServiceEditBtn_Click"/>
+                        <Button Content="Удалить" FontSize="25" x:Name="DeleteServiceBtn" Width="150" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="DeleteServiceBtn_Click"/>
+                        <Button Content="Назад" FontSize="25" x:Name="GoBackBtn" VerticalAlignment="Top" Width="150" Style="{StaticResource SecondaryButtonStyle}" Height="40" Click="GoBackBtn_Click"/>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
         </DockPanel>
         <Border x:Name="EditServicePanel"
-            Grid.RowSpan="2"
-            Background="White"
-            BorderBrush="#E5E7EB"
-            BorderThickness="1"
-            CornerRadius="8"
-            Padding="16"
-            Margin="10"
-            Visibility="Collapsed">
+         Grid.RowSpan="2"
+         Background="White"
+         BorderBrush="#E5E7EB"
+         BorderThickness="1"
+         CornerRadius="8"
+         Padding="16"
+         Margin="10"
+         Visibility="Collapsed">
             <StackPanel Margin="0,170,0,0" HorizontalAlignment="Center">
                 <TextBlock Text="Новая услуга" HorizontalAlignment="Left" Style="{StaticResource LBAutorization}" Margin="0,0,0,50"/>
                 <!-- Услуга -->
@@ -107,11 +108,11 @@
                     <TextBlock Text="Цена:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
                     <TextBox x:Name="CostTB" Width="750" Style="{StaticResource TBLogin}" Margin="47,0,0,0"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="BtnSave" Click="BtnSave_Click" Content="Сохранить" Width="100" Height="32" Style="{StaticResource AddChangeBT}"
-                Margin="0,0,10,0"/>
-                    <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="Отменить" Width="100" Height="32" Style="{StaticResource SecondaryButtonStyle}"
-                            />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="BtnSave" FontSize="25" Click="BtnSave_Click" Content="Сохранить" Width="150" Height="32" Style="{StaticResource AddChangeBT}"
+             Margin="0,0,10,0"/>
+                    <Button x:Name="BtnCancel" FontSize="25" Click="BtnCancel_Click" Content="Отменить" Width="150" Height="32" Style="{StaticResource SecondaryButtonStyle}"
+                         />
                 </StackPanel>
             </StackPanel>
         </Border>

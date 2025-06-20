@@ -27,17 +27,18 @@
             <ScrollViewer Margin="20">
                 <Grid>
 
-                    <DataGrid x:Name="MastersUserDataGrid"
-                      ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
-                      ItemsSource="{Binding}"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      RowBackground="White"
-                      AlternatingRowBackground="#E7EAEF"
-                      BorderBrush="#DDDDDD"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      Margin="0,0,0,80">
+                    <DataGrid x:Name="MastersUserDataGrid" FontSize="20"
+                          Style="{StaticResource AccentDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
+                  ItemsSource="{Binding}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  RowBackground="White"
+                  AlternatingRowBackground="#E7EAEF"
+                  BorderBrush="#DDDDDD"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  Margin="0,0,0,80">
 
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
@@ -79,9 +80,9 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Height="40"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom">
-                        <Button Content="Назад" x:Name="MastGoBackBtn" Width="150" Margin="5, 0" Style="{StaticResource SecondaryButtonStyle}" Click="MastGoBackBtn_Click"/>
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+                        <Button Content="Назад" FontSize="25" x:Name="MastGoBackBtn" Width="150" Margin="5, 0" Style="{StaticResource SecondaryButtonStyle}" Click="MastGoBackBtn_Click"/>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>

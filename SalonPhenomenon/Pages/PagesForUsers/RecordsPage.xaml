@@ -22,31 +22,32 @@
                         <GradientStop Color="#806491" Offset="1.0"/>
                     </LinearGradientBrush>
                 </StackPanel.Background>
-                <Button Content="Мастера" x:Name="MastersBtn" Width="120" Margin="10,5" Style="{StaticResource AccentButtonStyle}" Click="MastersBtn_Click"/>
-                <Button Content="Услуги" x:Name="ServicesBtn" Width="120" Margin="10,5" Style="{StaticResource AccentButtonStyle}" Click="ServicesBtn_Click"/>
-                <Button Content="Выйти" x:Name="ExitBtn" Width="120" Style="{StaticResource AccentButtonStyle}" Click="ExitBtn_Click"/>
+                <Button Content="Мастера" x:Name="MastersBtn" Width="120" FontSize="20" Margin="10,5" Style="{StaticResource AccentButtonStyle}" Click="MastersBtn_Click"/>
+                <Button Content="Услуги" x:Name="ServicesBtn" Width="120" FontSize="20" Margin="10,5" Style="{StaticResource AccentButtonStyle}" Click="ServicesBtn_Click"/>
+                <Button Content="Выйти" x:Name="ExitBtn" Width="120" FontSize="20" Style="{StaticResource AccentButtonStyle}" Click="ExitBtn_Click"/>
             </StackPanel>
 
             <ScrollViewer Margin="20">
                 <Grid>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Поиск" HorizontalAlignment="Center" Margin="0,20,20,0" Style="{StaticResource LBName}"/>
+                        <TextBlock Text="Поиск" HorizontalAlignment="Center" Margin="0,20,20,0" Style="{StaticResource LBName}" FontSize="20"/>
                         <TextBox x:Name="SearchBox" Width="350" Height="40" HorizontalAlignment="Right" Margin="0,7,0,0"
-                                 VerticalAlignment="Top" TextChanged="SearchBox_TextChanged"/>
+                             VerticalAlignment="Top" TextChanged="SearchBox_TextChanged"/>
                     </StackPanel>
 
-                    <DataGrid x:Name="RecordsDataGrid"
-                      ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
-                      ItemsSource="{Binding}"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      RowBackground="White"
-                      AlternatingRowBackground="#E7EAEF"
-                      BorderBrush="White"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      Margin="0,54,0,80"
-                      SelectionChanged="RecordsDataGrid_SelectionChanged">
+                    <DataGrid x:Name="RecordsDataGrid" FontSize="20"
+                          Style="{StaticResource AccentDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
+                  ItemsSource="{Binding}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  RowBackground="White"
+                  AlternatingRowBackground="#E7EAEF"
+                  BorderBrush="White"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  Margin="0,54,0,80"
+                  SelectionChanged="RecordsDataGrid_SelectionChanged">
 
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
@@ -67,18 +68,19 @@
                             <DataGridTextColumn Header="Время" Binding="{Binding RegistrationTime}" Width="*"/>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Statuses.StatusName}" Width="*"/>
                             <DataGridTextColumn Header="Клиент" Binding="{Binding RegSurnameClient}" Width="*"/>
+                            <DataGridTextColumn Header="Мастер" Binding="{Binding Masters.MasterSurname}" Width="*"/>
 
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button x:Name="DetailBtn" 
-                Click="DetailBtn_Click"
-                    Style="{StaticResource IconButtonStyle}"
-                Tag="{Binding}">
+            Click="DetailBtn_Click"
+                Style="{StaticResource IconButtonStyle}"
+            Tag="{Binding}">
                                             <StackPanel Orientation="Vertical" Margin="0">
                                                 <TextBlock Text="⋮" FontSize="16" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center"/>
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"/>
                                             </StackPanel>
                                         </Button>
                                     </DataTemplate>
@@ -95,23 +97,23 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom" Height="40">
-                        <Button Content="Добавить" x:Name="RecordAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="RecordAddBtn_Click"/>
-                        <Button Content="Редактировать" x:Name="RecordEditBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="RecordEditBtn_Click"/>
-                        <Button Content="Удалить" x:Name="RecordDeleteBtn" Width="120" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="RecordDeleteBtn_Click"/>
+                    VerticalAlignment="Bottom" Height="40">
+                        <Button Content="Добавить" x:Name="RecordAddBtn" FontSize="25" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="RecordAddBtn_Click"/>
+                        <Button Content="Редактировать" x:Name="RecordEditBtn" FontSize="25" Width="180" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="RecordEditBtn_Click"/>
+                        <Button Content="Удалить" x:Name="RecordDeleteBtn" FontSize="25" Width="120" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="RecordDeleteBtn_Click"/>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
         </DockPanel>
         <Border x:Name="EditPanel"
-                        Grid.RowSpan="2"
-                        Background="White"
-                        BorderBrush="#E5E7EB"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="16"
-                        Margin="10"
-                        Visibility="Collapsed">
+                    Grid.RowSpan="2"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="16"
+                    Margin="10"
+                    Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock Text="Новая запись" HorizontalAlignment="Left" Style="{StaticResource LBAutorization}" Margin="0,20,0,0"/>
                 <!-- Дата -->
@@ -123,7 +125,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <TextBlock Text="Время:" Style="{StaticResource LogPass}" Margin="0,0,92,0"/>
                     <TextBox x:Name="TbEditTime" Width="750" Style="{StaticResource TBLogin}" 
-                         PreviewTextInput="TbEditTime_PreviewTextInput" ToolTip="Формат HH:MM"/>
+                     PreviewTextInput="TbEditTime_PreviewTextInput" ToolTip="Формат HH:MM"/>
                 </StackPanel>
                 <!-- Фамилия -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
@@ -143,7 +145,7 @@
                 <!-- Телефон -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                     <TextBlock Text="Телефон клиента:" Style="{StaticResource LogPass}" Margin="0,0,22,0"/>
-                    <TextBox x:Name="TbEditPhone" Style="{StaticResource TBLogin}" Width="750"/>
+                    <TextBox x:Name="TbEditPhone" Style="{StaticResource TBLogin}" Width="750" TextChanged="TbEditPhone_TextChanged"/>
                 </StackPanel>
                 <!-- Статус -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
@@ -167,10 +169,10 @@
                 </StackPanel>
                 <!-- Кнопки Сохранить/Отменить -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="BtnSave" Content="Сохранить" Width="100" Height="32" Style="{StaticResource AddChangeBT}"
-                                    Margin="0,0,10,0" Click="BtnSave_Click"/>
-                    <Button x:Name="BtnCancel" Content="Отменить" Width="100" Height="32" Style="{StaticResource SecondaryButtonStyle}"
-                                    Click="BtnCancel_Click"/>
+                    <Button x:Name="BtnSave" FontSize="25" Content="Сохранить" Width="150" Height="32" Style="{StaticResource AddChangeBT}"
+                                Margin="0,0,10,0" Click="BtnSave_Click"/>
+                    <Button x:Name="BtnCancel" FontSize="25" Content="Отменить" Width="150" Height="32" Style="{StaticResource SecondaryButtonStyle}"
+                                Click="BtnCancel_Click"/>
                 </StackPanel>
             </StackPanel>
         </Border>

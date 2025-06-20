@@ -27,18 +27,19 @@
             <ScrollViewer Margin="20">
                 <Grid>
 
-                    <DataGrid x:Name="MastersDataGrid"
-                  ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
-                  ItemsSource="{Binding}"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  RowBackground="White"
-                  AlternatingRowBackground="#E7EAEF"
-                  BorderBrush="#DDDDDD"
-                  GridLinesVisibility="None"
-                  HeadersVisibility="Column"
-                  SelectionChanged="MasterDataGrid_SelectionChanged"  
-                  Margin="0,0,0,80">
+                    <DataGrid x:Name="MastersDataGrid" FontSize="20"
+                           Style="{StaticResource AccentDataGridStyle}"
+               ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
+               ItemsSource="{Binding}"
+               AutoGenerateColumns="False"
+               CanUserAddRows="False"
+               RowBackground="White"
+               AlternatingRowBackground="#E7EAEF"
+               BorderBrush="#DDDDDD"
+               GridLinesVisibility="None"
+               HeadersVisibility="Column"
+               SelectionChanged="MasterDataGrid_SelectionChanged"  
+               Margin="0,0,0,80">
 
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
@@ -80,25 +81,25 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Height="40"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom">
-                        <Button Content="Добавить" x:Name="MasterAddBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="MasterAddBtn_Click"/>
-                        <Button Content="Редактировать" x:Name="MasterEditBtn" Width="120" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="MasterEditBtn_Click"/>
-                        <Button Content="Удалить" x:Name="MasterServiceBtn" Width="120" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="MasterServiceBtn_Click"/>
-                        <Button Content="Назад" x:Name="MastGoBackBtn" Width="150" Margin="5, 0" Style="{StaticResource SecondaryButtonStyle}" Click="MastGoBackBtn_Click"/>
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Bottom">
+                        <Button Content="Добавить" FontSize="25" x:Name="MasterAddBtn" Width="150" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="MasterAddBtn_Click"/>
+                        <Button Content="Редактировать" FontSize="25" x:Name="MasterEditBtn" Width="180" Margin="5,0" Style="{StaticResource PrimaryButtonStyle}" Click="MasterEditBtn_Click"/>
+                        <Button Content="Удалить" FontSize="25" x:Name="MasterServiceBtn" Width="150" Margin="5,0" Style="{StaticResource DangerButtonStyle}" Click="MasterServiceBtn_Click"/>
+                        <Button Content="Назад" FontSize="25" x:Name="MastGoBackBtn" Width="150" Margin="5, 0" Style="{StaticResource SecondaryButtonStyle}" Click="MastGoBackBtn_Click"/>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
         </DockPanel>
         <Border x:Name="EditMasterPanel"
-                    Grid.RowSpan="2"
-                    Background="White"
-                    BorderBrush="#E5E7EB"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="16"
-                    Margin="10"
-                    Visibility="Collapsed">
+                 Grid.RowSpan="2"
+                 Background="White"
+                 BorderBrush="#E5E7EB"
+                 BorderThickness="1"
+                 CornerRadius="8"
+                 Padding="16"
+                 Margin="10"
+                 Visibility="Collapsed">
             <StackPanel Margin="0,170,0,0" HorizontalAlignment="Center">
                 <TextBlock Text="Добавить мастера" HorizontalAlignment="Left" Style="{StaticResource LBAutorization}" Margin="0,0,0,50"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
@@ -120,10 +121,10 @@
                     <TextBlock Text="Специализация:" Style="{StaticResource LogPass}" Width="120" VerticalAlignment="Center" FontSize="14"/>
                     <ComboBox x:Name="MasterSpecCB" Width="800" FontSize="14" Height="40"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="BtnSave" Content="Сохранить" Width="100" Height="32" Style="{StaticResource AddChangeBT}"
-                        Margin="0,0,10,0" Click="BtnSave_Click"/>
-                    <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="Отменить" Width="100" Height="32" Style="{StaticResource SecondaryButtonStyle}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="BtnSave" FontSize="25" Content="Сохранить" Width="150" Height="32" Style="{StaticResource AddChangeBT}"
+                     Margin="0,0,10,0" Click="BtnSave_Click"/>
+                    <Button x:Name="BtnCancel" FontSize="25" Click="BtnCancel_Click" Content="Отменить" Width="150" Height="32" Style="{StaticResource SecondaryButtonStyle}"/>
                 </StackPanel>
             </StackPanel>
         </Border>

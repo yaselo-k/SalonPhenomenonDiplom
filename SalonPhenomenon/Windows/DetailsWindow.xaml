@@ -17,10 +17,10 @@
 
                 <Border Grid.Row="0" Background="#806491" Padding="15" CornerRadius="5,5,0,0">
                     <TextBlock Text="Подробности" 
-                    Foreground="White" 
-                    FontSize="18" 
-                    FontWeight="Bold"
-                    HorizontalAlignment="Center"/>
+                Foreground="White" 
+                FontSize="18" 
+                FontWeight="Bold"
+                HorizontalAlignment="Center"/>
                 </Border>
 
                 <Grid Grid.Row="1" Margin="20">
@@ -72,14 +72,15 @@
 
                 <Border Grid.Row="2" Background="#FFF5F5F5" Padding="10" CornerRadius="0,0,5,0">
                     <Button Content="Закрыть" x:Name="CloseBtn"
-                 Height="40"
-                 Width="150" 
-                 HorizontalAlignment="Right"
-                 Margin="0,0,20,0"
-                 Background="#02315E"
-                 Foreground="White"
-                 BorderBrush="Transparent"
-                 FontWeight="SemiBold" Click="CloseBtn_Click"/>
+             FontSize="20"
+             Height="40"
+             Width="150" 
+             HorizontalAlignment="Right"
+             Margin="0,0,20,0"
+             Background="#02315E"
+             Foreground="White"
+             BorderBrush="Transparent"
+             FontWeight="SemiBold" Click="CloseBtn_Click"/>
                 </Border>
             </Grid>
         </Border>
