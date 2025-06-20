@@ -14,11 +14,11 @@ namespace SalonPhenomenon.Pages.PagesForUsers
         public MastersUser()
         {
             InitializeComponent();
-            MastersUserDataGrid.ItemsSource = SalonEntities.GetContext().Masters.ToList();
+            MastersUserDataGrid.ItemsSource = SalonPhenEntities.GetContext().Masters.ToList();
         }
         private void LoadMasters()
         {
-            using (var context = new SalonEntities())
+            using (var context = new SalonPhenEntities())
             {
                 MastersUserDataGrid.ItemsSource = context.Services
                     .ToList();
@@ -42,7 +42,7 @@ namespace SalonPhenomenon.Pages.PagesForUsers
 
             if (MessageBox.Show("Удалить?", "Подтвердите", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                using (var context = new SalonEntities())
+                using (var context = new SalonPhenEntities())
                 {
                     var entry = context.Services.Find(master.MasterID);
                     if (entry != null)

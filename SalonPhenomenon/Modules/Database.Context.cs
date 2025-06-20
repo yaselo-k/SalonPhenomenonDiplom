@@ -13,18 +13,18 @@ namespace SalonPhenomenon.Modules
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SalonEntities : DbContext
+    public partial class SalonPhenEntities : DbContext
     {
-        private static SalonEntities _context;
+        private static SalonPhenEntities _context;
 
-        public static SalonEntities GetContext()
+        public static SalonPhenEntities GetContext()
         {
             if (_context == null)
-                _context = new SalonEntities();
+                _context = new SalonPhenEntities();
             return _context;
         }
-        public SalonEntities()
-            : base("name=SalonEntities")
+        public SalonPhenEntities()
+            : base("name=SalonPhenEntities")
         {
         }
     
@@ -39,6 +39,7 @@ namespace SalonPhenomenon.Modules
         public DbSet<Services> Services { get; set; }
         public DbSet<Specializations> Specializations { get; set; }
         public DbSet<Statuses> Statuses { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Users> Users { get; set; }
     }
 }

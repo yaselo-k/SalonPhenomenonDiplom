@@ -71,7 +71,7 @@ namespace SalonPhenomenon.Pages
 
             try
             {
-                Users userobj = SalonEntities.GetContext().Users.FirstOrDefault(u => u.UserLogin == LoginTextBox.Text);
+                Users userobj = SalonPhenEntities.GetContext().Users.FirstOrDefault(u => u.UserLogin == LoginTextBox.Text);
 
                 if (userobj == null)
                 {
@@ -101,13 +101,13 @@ namespace SalonPhenomenon.Pages
                         MessageBox.Show($"Неверный пароль. Осталось попыток: {3 - userobj.FailedAttempts}");
                     }
 
-                    SalonEntities.GetContext().SaveChanges();
+                    SalonPhenEntities.GetContext().SaveChanges();
                     return;
                 }
 
                 userobj.FailedAttempts = 0;
                 userobj.LastLoginDate = DateTime.Now;
-                SalonEntities.GetContext().SaveChanges();
+                SalonPhenEntities.GetContext().SaveChanges();
 
                 Manager.AuthUser = userobj;
 

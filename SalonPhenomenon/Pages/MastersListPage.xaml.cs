@@ -13,18 +13,18 @@ namespace SalonPhenomenon.Pages
     /// </summary>
     public partial class MastersListPage : Page
     {
-        private readonly SalonEntities _context;
+        private readonly SalonPhenEntities _context;
         private Masters _currentMaster;
         public MastersListPage()
         {
             InitializeComponent();
-            _context = SalonEntities.GetContext();
+            _context = SalonPhenEntities.GetContext();
             LoadMasters();
             LoadEditLists();
         }
         private void LoadMasters()
         {
-            using (var context = new SalonEntities())
+            using (var context = new SalonPhenEntities())
             {
                 MastersDataGrid.ItemsSource = _context.Masters.ToList();
                 MasterEditBtn.IsEnabled = false;
@@ -62,7 +62,7 @@ namespace SalonPhenomenon.Pages
 
             if (MessageBox.Show("Удалить?", "Подтвердите", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                using (var context = new SalonEntities())
+                using (var context = new SalonPhenEntities())
                 {
                     var entry = context.Masters.Find(master.MasterID);
                     if (entry != null)

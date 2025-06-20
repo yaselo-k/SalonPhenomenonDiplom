@@ -11,13 +11,13 @@ namespace SalonPhenomenon.Pages
 {
     public partial class RegistrationAdmin : Page
     {
-        private readonly SalonEntities _context;
+        private readonly SalonPhenEntities _context;
         private Registrations _currentReg;
 
         public RegistrationAdmin()
         {
             InitializeComponent();
-            _context = SalonEntities.GetContext();
+            _context = SalonPhenEntities.GetContext();
             LoadRegistrations();
             LoadEditLists();
         }

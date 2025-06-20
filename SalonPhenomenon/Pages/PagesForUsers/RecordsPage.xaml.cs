@@ -14,13 +14,13 @@ namespace SalonPhenomenon.Pages.PagesForUsers
     /// </summary>
     public partial class RecordsPage : Page
     {
-        private readonly SalonEntities _context;
+        private readonly SalonPhenEntities _context;
         private Registrations _currentReg;
 
         public RecordsPage()
         {
             InitializeComponent();
-            _context = SalonEntities.GetContext();
+            _context = SalonPhenEntities.GetContext();
             LoadRegistrations();
             LoadEditLists();
         }

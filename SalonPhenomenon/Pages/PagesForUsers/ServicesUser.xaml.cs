@@ -14,7 +14,7 @@ namespace SalonPhenomenon.Pages.PagesForUsers
         public ServicesUser()
         {
             InitializeComponent();
-            ServicesUserDataGrid.ItemsSource = SalonEntities.GetContext().Services.ToList();
+            ServicesUserDataGrid.ItemsSource = SalonPhenEntities.GetContext().Services.ToList();
         }
 
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)

@@ -30,7 +30,7 @@
             <ScrollViewer Margin="20">
                 <Grid>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Поиск" HorizontalAlignment="Center" Margin="0,20,20,0" Style="{StaticResource LBName}"/>
+                        <TextBlock Text="Поиск (мастер)" HorizontalAlignment="Center" Margin="0,20,20,0" Style="{StaticResource LBName}"/>
                             <TextBox x:Name="SearchBox" Width="350" Height="40" HorizontalAlignment="Right" Margin="0,7,0,0"
                                      VerticalAlignment="Top" TextChanged="SearchBox_TextChanged"/>
                     </StackPanel>

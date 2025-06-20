@@ -13,18 +13,18 @@ namespace SalonPhenomenon.Pages
     /// </summary>
     public partial class ServicesPage : Page
     {
-        private readonly SalonEntities _context;
+        private readonly SalonPhenEntities _context;
         private Services _currentService;
         public ServicesPage()
         {
             InitializeComponent();
-            _context = SalonEntities.GetContext();
+            _context = SalonPhenEntities.GetContext();
             LoadServices();
         }
 
         private void LoadServices()
         {
-            using (var context = new SalonEntities())
+            using (var context = new SalonPhenEntities())
             {
                 ServicesDataGrid.ItemsSource = _context.Services.ToList();
                 ServiceEditBtn.IsEnabled = false;
@@ -52,7 +52,7 @@ namespace SalonPhenomenon.Pages
 
             if (MessageBox.Show("Удалить?", "Подтвердите", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                using (var context = new SalonEntities())
+                using (var context = new SalonPhenEntities())
                 {
                     var entry = context.Services.Find(service.ServiceID);
                     if (entry != null)
