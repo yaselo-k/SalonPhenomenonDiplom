@@ -23,8 +23,6 @@ namespace SalonPhenomenon.Modules
         public string ServiceName { get; set; }
         public int ServiceDurationInMin { get; set; }
         public decimal ServiceCost { get; set; }
-
-        // 🆕 Добавленное вычисляемое свойство
         public string FormattedDuration
         {
             get
@@ -63,7 +61,7 @@ namespace SalonPhenomenon.Modules
             else
                 return "минут";
         }
-    
+
         public virtual ICollection<Registrations> Registrations { get; set; }
     }
 }

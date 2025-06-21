@@ -56,7 +56,7 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Услуга" Binding="{Binding ServiceName}" Width="*"/>
-                            <DataGridTextColumn Header="Продолжительность (мин)" Binding="{Binding ServiceDurationInMin}" Width="*"/>
+                            <DataGridTextColumn Header="Продолжительность" Binding="{Binding FormattedDuration}" Width="*"/>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding ServiceCost, StringFormat='{}{0:F2} ₽'}" Width="*"/>
                         </DataGrid.Columns>
 

@@ -118,7 +118,6 @@ namespace SalonPhenomenon.Pages
         {
             var sb = new StringBuilder();
 
-            // Вспомогательные методы
             bool ContainsDigit(string input) =>
                 !string.IsNullOrEmpty(input) && input.Any(char.IsDigit);
 
@@ -132,7 +131,6 @@ namespace SalonPhenomenon.Pages
             bool HasValidLength(string input) =>
                 input?.Trim().Length >= 2;
 
-            // Проверка: Название услуги
             if (string.IsNullOrWhiteSpace(ServiceTB.Text))
             {
                 sb.AppendLine("• Введите наименование услуги.");
@@ -147,7 +145,6 @@ namespace SalonPhenomenon.Pages
                     sb.AppendLine("• Название содержит недопустимые символы.");
             }
 
-            // Проверка: Длительность в минутах
             if (!int.TryParse(DurInMinTB.Text, out var dur))
             {
                 sb.AppendLine("• Укажите длительность в минутах.");
@@ -157,7 +154,6 @@ namespace SalonPhenomenon.Pages
                 sb.AppendLine("• Длительность не должна быть четырёхзначной.");
             }
 
-            // Проверка: Стоимость
             if (!decimal.TryParse(CostTB.Text, out var sum))
             {
                 sb.AppendLine("• Укажите стоимость.");
@@ -167,7 +163,6 @@ namespace SalonPhenomenon.Pages
                 sb.AppendLine("• Стоимость должна быть больше нуля.");
             }
 
-            // Если есть ошибки — показываем их
             if (sb.Length > 0)
             {
                 MessageBox.Show(sb.ToString().TrimEnd(), "Ошибка ввода",
@@ -182,8 +177,8 @@ namespace SalonPhenomenon.Pages
             }
 
             _currentService.ServiceName = ServiceTB.Text.Trim();
-            _currentService.ServiceDurationInMin = dur;  // Теперь сохраняем int
-            _currentService.ServiceCost = sum;          // Теперь сохраняем decimal
+            _currentService.ServiceDurationInMin = dur; 
+            _currentService.ServiceCost = sum;          
 
             try
             {

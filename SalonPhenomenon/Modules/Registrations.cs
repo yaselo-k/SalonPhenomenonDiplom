@@ -25,7 +25,6 @@ namespace SalonPhenomenon.Modules
         public int RegServiceID { get; set; }
         public int IDStatus { get; set; }
         public int IDMaster { get; set; }
-
         public string ShortName
         {
             get

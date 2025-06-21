@@ -32,7 +32,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Поиск" HorizontalAlignment="Center" Margin="0,20,20,0" Style="{StaticResource LBName}" FontSize="20"/>
                         <TextBox x:Name="SearchBox" Width="350" Height="40" HorizontalAlignment="Right" Margin="0,7,0,0"
-                             VerticalAlignment="Top" TextChanged="SearchBox_TextChanged"/>
+                             VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" TextChanged="SearchBox_TextChanged"/>
                     </StackPanel>
 
                     <DataGrid x:Name="RecordsDataGrid" FontSize="20"
@@ -64,11 +64,11 @@
 
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding RegistrationDate}" Width="*"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding RegistrationDate, StringFormat='{}{0:dd.MM.yyyy}'}" Width="*"/>
                             <DataGridTextColumn Header="Время" Binding="{Binding RegistrationTime}" Width="*"/>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Statuses.StatusName}" Width="*"/>
-                            <DataGridTextColumn Header="Клиент" Binding="{Binding RegSurnameClient}" Width="*"/>
-                            <DataGridTextColumn Header="Мастер" Binding="{Binding Masters.MasterSurname}" Width="*"/>
+                            <DataGridTextColumn Header="Клиент" Binding="{Binding ShortName}" Width="*"/>
+                            <DataGridTextColumn Header="Мастер" Binding="{Binding Masters.ShortName}" Width="*"/>
 
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>

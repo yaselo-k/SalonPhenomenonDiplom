@@ -33,7 +33,6 @@ namespace SalonPhenomenon.Pages
         }
         private void LoadEditLists()
         {
-            // Специализации
             MasterSpecCB.ItemsSource = _context.Specializations.OrderBy(s => s.SpecializationName).ToList();
             MasterSpecCB.DisplayMemberPath = "SpecializationName";
             MasterSpecCB.SelectedValuePath = "SpecializationID";
@@ -119,7 +118,6 @@ namespace SalonPhenomenon.Pages
         }
         private bool ContainsSpecialChars(string input)
         {
-            // Список запрещённых символов
             char[] invalidChars = "!@#$%^&*(){}[]|\\\"'<>?,./".ToCharArray();
 
             return input.Any(c => invalidChars.Contains(c));
@@ -159,7 +157,6 @@ namespace SalonPhenomenon.Pages
                 return;
             }
 
-            // Получаем связанные сущности
             var specId = (int)MasterSpecCB.SelectedValue;
 
             if (_currentMaster == null)
