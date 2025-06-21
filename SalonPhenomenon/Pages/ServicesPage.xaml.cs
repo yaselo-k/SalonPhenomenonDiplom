@@ -46,11 +46,11 @@ namespace SalonPhenomenon.Pages
 
             if (service == null)
             {
-                MessageBox.Show("Выберите услугу");
+                MessageBox.Show("Выберите услугу", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (MessageBox.Show("Удалить?", "Подтвердите", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 using (var context = new SalonPhenEntities())
                 {

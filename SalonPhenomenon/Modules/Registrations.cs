@@ -25,7 +25,15 @@ namespace SalonPhenomenon.Modules
         public int RegServiceID { get; set; }
         public int IDStatus { get; set; }
         public int IDMaster { get; set; }
-    
+
+        public string ShortName
+        {
+            get
+            {
+                return $"{RegSurnameClient} {RegNameClient[0]}.{RegPatronymicClient[0]}";
+            }
+        }
+
         public virtual Masters Masters { get; set; }
         public virtual Services Services { get; set; }
         public virtual Statuses Statuses { get; set; }

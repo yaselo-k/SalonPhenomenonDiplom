@@ -24,6 +24,14 @@ namespace SalonPhenomenon.Modules
         public string MasterName { get; set; }
         public string MasterPatronymic { get; set; }
         public int MasterSpecialization { get; set; }
+
+        public string ShortName
+        {
+            get
+            {
+                return $"{MasterSurname} {MasterName[0]}.{MasterPatronymic[0]}";
+            }
+        }
     
         public virtual Specializations Specializations { get; set; }
         public virtual ICollection<Registrations> Registrations { get; set; }

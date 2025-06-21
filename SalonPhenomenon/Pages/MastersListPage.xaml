@@ -32,6 +32,7 @@
                ColumnHeaderStyle="{StaticResource AccentColumnHeader}"
                ItemsSource="{Binding}"
                AutoGenerateColumns="False"
+               IsReadOnly="True"
                CanUserAddRows="False"
                RowBackground="White"
                AlternatingRowBackground="#E7EAEF"

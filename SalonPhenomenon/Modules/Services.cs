@@ -23,6 +23,46 @@ namespace SalonPhenomenon.Modules
         public string ServiceName { get; set; }
         public int ServiceDurationInMin { get; set; }
         public decimal ServiceCost { get; set; }
+
+        // 🆕 Добавленное вычисляемое свойство
+        public string FormattedDuration
+        {
+            get
+            {
+                int hours = ServiceDurationInMin / 60;
+                int minutes = ServiceDurationInMin % 60;
+
+                string hourPart = hours > 0 ? $"{hours} {GetHourWord(hours)}" : "";
+                string minutePart = minutes > 0 ? $"{minutes} {GetMinuteWord(minutes)}" : "";
+
+                if (hours > 0 && minutes > 0)
+                    return $"{hourPart} {minutePart}";
+                else if (hours > 0)
+                    return hourPart;
+                else
+                    return minutePart;
+            }
+        }
+
+        private string GetHourWord(int hours)
+        {
+            if (hours % 10 == 1 && hours % 100 != 11)
+                return "час";
+            else if ((hours % 10 >= 2 && hours % 10 <= 4) && !(hours % 100 >= 12 && hours % 100 <= 14))
+                return "часа";
+            else
+                return "часов";
+        }
+
+        private string GetMinuteWord(int minutes)
+        {
+            if (minutes % 10 == 1 && minutes % 100 != 11)
+                return "минута";
+            else if ((minutes % 10 >= 2 && minutes % 10 <= 4) && !(minutes % 100 >= 12 && minutes % 100 <= 14))
+                return "минуты";
+            else
+                return "минут";
+        }
     
         public virtual ICollection<Registrations> Registrations { get; set; }
     }

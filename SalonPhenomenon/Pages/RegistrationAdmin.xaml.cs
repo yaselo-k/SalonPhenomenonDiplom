@@ -343,18 +343,28 @@ namespace SalonPhenomenon.Pages
 
         }
 
+
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SearchBox.Text.Trim().ToLower();
 
-            var masterIDs = _context.Masters
-                                    .Where(m => m.MasterSurname.ToLower().Contains(searchText))
-                                    .Select(m => m.MasterID)
-                                    .ToList();
-
             var query = _context.Registrations
-                                .Where(r => masterIDs.Contains(r.IDMaster))
-                                .ToList();
+                .Include("Masters")
+                .Include("Statuses")
+                .AsEnumerable()
+                .Where(r =>
+                    r.RegistrationDate.ToString("dd.MM.yyyy").ToLower().Contains(searchText) ||
+                    r.RegistrationTime.ToString(@"hh\:mm").ToLower().Contains(searchText) ||
+                    r.RegSurnameClient?.ToLower().Contains(searchText) == true ||
+                    r.RegNameClient?.ToLower().Contains(searchText) == true ||
+                    r.RegPatronymicClient?.ToLower().Contains(searchText) == true ||
+                    r.RegPhoneNumberClient?.ToLower().Contains(searchText) == true ||
+                    r.Masters?.MasterSurname?.ToLower().Contains(searchText) == true ||
+                    r.Masters?.MasterName?.ToLower().Contains(searchText) == true ||
+                    r.Masters?.MasterPatronymic?.ToLower().Contains(searchText) == true ||
+                    r.Statuses?.StatusName?.ToLower().Contains(searchText) == true
+                )
+                .ToList();
 
             RecordsDataGrid.ItemsSource = query;
         }

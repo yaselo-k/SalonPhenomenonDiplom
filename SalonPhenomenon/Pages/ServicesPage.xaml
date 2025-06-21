@@ -37,6 +37,7 @@
                    RowBackground="White"
                    AlternatingRowBackground="#E7EAEF"
                    BorderBrush="#DDDDDD"
+                   IsReadOnly="True"
                    GridLinesVisibility="None"
                    HeadersVisibility="Column"
                            SelectionChanged="ServicesDataGrid_SelectionChanged"
@@ -56,8 +57,8 @@
                         </DataGrid.CellStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Услуга" Binding="{Binding ServiceName}" Width="*"/>
-                            <DataGridTextColumn Header="Продолжительность (мин)" Binding="{Binding ServiceDurationInMin}" Width="*"/>
+                            <DataGridTextColumn Header="Услуга" Binding="{Binding ServiceName}" Width="1.15*"/>
+                            <DataGridTextColumn Header="Продолжительность" Binding="{Binding FormattedDuration}" Width="*"/>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding ServiceCost, StringFormat='{}{0:F2} ₽'}" Width="*"/>
                         </DataGrid.Columns>
 
